@@ -1,12 +1,8 @@
 class UserPolicy < ApplicationPolicy
-  class Scope < Scope
-     
-  end
-
-
+   
 
   def index?
-    user.admin
+    user != nil && user.admin
   end
 
   def edit?
@@ -14,20 +10,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-     user.admin
+    user != nil && user.admin
   end
 
-  
-
-  # def new?
-  #   create?
-  # end
-  
-  # def create?
-  #   @user.admin
-  # end
-
   def destroy?
-    @user.admin
+    user != nil &&  @user.admin
   end
 end

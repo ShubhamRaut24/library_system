@@ -20,9 +20,7 @@ class CategoryPolicy < ApplicationPolicy
 
     attr_reader :user, :scope
   end
-
-
-  
+ 
 
   def initialize(user, category)
     @user = user
@@ -34,7 +32,7 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def show?
-    user == record.user
+    user != nil
   end
 
   def new?
@@ -42,7 +40,7 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin
+    user != nil && user.admin
   end
 
   
@@ -51,10 +49,10 @@ def edit?
   end
 
   def update?
-    user.admin
+    user != nil && user.admin
   end
 
   def destroy?
-    user.admin
+    user != nil && user.admin
   end
 end

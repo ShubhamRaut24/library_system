@@ -10,12 +10,16 @@ class BookPolicy < ApplicationPolicy
     true
   end
 
+  def show?
+    user!=nil
+  end
+
   def edit?
     update?
   end
   
   def update?
-    @user.admin
+    user!=nil && @user.admin
   end
 
   def new?
@@ -23,16 +27,14 @@ class BookPolicy < ApplicationPolicy
   end
   
   def create?
-    @user.admin
+    user!=nil &&  @user.admin
   end
 
   def destroy?
-    @user.admin
+    user!=nil && @user.admin
   end
 
-  def add_book?
    
-  end
 
 
 end

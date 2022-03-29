@@ -25,7 +25,7 @@
         <%= link_to 'Show |', book %> 
         <%= link_to 'Edit |', edit_book_path(book) %>
         <%= link_to 'Delete', book, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;
-        <% if book.status == true%>
+        <% if book.status == true && user_signed_in?%>
         <%= link_to 'Add Book ', add_book_path(book)%>
         <%end%>
         </td>
