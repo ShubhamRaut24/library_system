@@ -1,0 +1,36 @@
+ <table>
+  <thead>
+    <tr>
+      <th>Name &nbsp; &nbsp;</th>
+      <th>Author &nbsp; &nbsp;</th>
+      <th>  Category </th>
+      <th > &nbsp; Status</th>
+      <th>  &nbsp; &nbsp;Actions</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.name %></td>
+        <td><%= book.author %></td> 
+        <td>  <% if book.categories.any? %>
+              <%= render book.categories %> 
+            <% end %>
+         </td>
+        <td> &nbsp;&nbsp; <%=  book.status ? "Availabe" : "Not Available" %> &nbsp;</td>
+        <td>
+        <%= link_to 'Show |', book %> 
+        <%= link_to 'Edit |', edit_book_path(book) %>
+        <%= link_to 'Delete', book, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;
+        <% if book.status == true%>
+        <%= link_to 'Add Book ', add_book_path(book)%>
+        <%end%>
+        </td>
+      </tr>
+      
+    <% end %>
+  </tbody>
+</table>

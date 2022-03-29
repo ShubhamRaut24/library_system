@@ -1,0 +1,26 @@
+ 
+
+      <%= render 'shared/errors', obj: @book %>
+      
+        <%= form_with(model: @book, local: true) do |f| %>
+           
+            <%= f.label :name  %><br/>
+            <%= f.text_field :name, placeholder: "name of book" %> <br/><br/>
+           
+
+          
+            <%= f.label :author%><br/>
+            <%= f.text_field :author, placeholder: "author name " %><br/><br/>
+
+             <%= f.label :category%><br/>
+             <%= f.collection_select(:category_ids, Category.all, :id, :name,
+             { prompt: "Make your selection from below list"}, { multiple: true, size: 4}) %><br/><br/>
+             
+            <%= f.submit  %><br/>
+         
+        <% end %>
+        <br/>
+      
+       
+    
+  

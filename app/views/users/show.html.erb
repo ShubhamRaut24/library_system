@@ -1,0 +1,11 @@
+ <h1><%= @user.username%>'s profile </h1>
+
+ <%= gravatar_for @user  %>
+
+ <h3>Books</h3>
+
+   <%= render 'users_books' %>
+ <br/>
+
+ <p><%= link_to '[ Cancel and return to Home]', root_path %></p>
+  

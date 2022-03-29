@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+     
+</head>
+<body>
+
+     
+     
+       <h1>Welcome Library System</h1>
+      <h3> Home Page</h3>
+      <br/><br/>
+      <% if user_signed_in? %>
+      <%= link_to 'All Books', books_path, class: "text-info" %><br/>
+       <%= link_to "All categories", categories_path, class: "text-info" %>
+       <% end %>
+       <br/><br/>
+<% if !user_signed_in? %>
+<%= link_to 'login', new_user_session_url %><br/>
+<% end %>
+
+
+       
+        
+       
+          
+         
+     
+
+      
+ 
+</body>
+</html>

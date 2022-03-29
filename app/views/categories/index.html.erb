@@ -1,0 +1,45 @@
+ <h1>List Of All Catrgories</h1>
+ <br/><br/>
+
+  <table>
+  <thead>
+    <tr>
+      <th>Catrgory Name &nbsp; &nbsp;</th>
+      <th>No. Of Books &nbsp; &nbsp;</th>
+        <% if  user_signed_in? && current_user.admin?  %>
+      <th>Actions &nbsp; &nbsp;</th>
+      <%end%>
+       
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.name, category_path(category) %></td>
+         <td><%= category.books.size %> -Books </td>
+        <td>
+        <% if  user_signed_in? && current_user.admin?  %> 
+         <%= link_to "Edit", edit_category_path(category)%>
+         <%= link_to "Delete", category_path(category), method: :delete,data: {confirm: "Are you sure ?"} %>&nbsp;
+         <%end%>
+        </td>
+      </tr>
+      
+    <% end %>
+  </tbody>
+</table>
+<br/>
+<div class="digg_pagination">
+    <%= will_paginate @categories, :container => false %>
+  </div>
+<br/>
+<% if user_signed_in?  %>
+<div>
+  <%= link_to "New Category", new_category_path, class: "btn btn-outline-info"%>
+</div>
+<%end%>
+<br/>
+<p>
+<%= link_to '[ Cancel and return to Home]', root_path %>
+</p>

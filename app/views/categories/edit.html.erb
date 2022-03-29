@@ -1,0 +1,21 @@
+<h1>Edit Category</h1>
+  <br/>
+   
+
+      <%= render 'shared/errors', obj: @category %>
+      
+        <%= form_with(model: @category, local: true) do |f| %>
+           
+            <%= f.label :"Category Name:"  %><br/>
+            <%= f.text_field :name, placeholder: "Enter Category.." %> <br/><br/>
+             
+            <%= f.submit  %>
+         
+        <% end %>
+        <br/>
+
+
+   <%= link_to "All categories", categories_path %>
+   
+       
+  <p><%= link_to '[ Cancel and return to Home]', root_path %></p>
