@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_29_121722) do
+ActiveRecord::Schema.define(version: 2022_03_29_173901) do
 
   create_table "book_categories", force: :cascade do |t|
     t.integer "book_id"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2022_03_29_121722) do
     t.boolean "status", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "quantity"
   end
 
   create_table "categories", force: :cascade do |t|

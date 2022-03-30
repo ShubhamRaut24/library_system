@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
     before_save { self.name[0] = name[0].upcase}
 
-    validates :name, presence: true, length:{minimum:6, maximum:50}
+    validates :name, presence: true, length:{minimum:6, maximum:100}
     validates :author, presence: true, length:{minimum:6, maximum:50}
 
 

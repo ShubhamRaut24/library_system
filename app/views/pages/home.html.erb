@@ -17,7 +17,10 @@
       <br/><br/>
       <% if user_signed_in? %>
       <%= link_to 'All Books', books_path, class: "text-info" %><br/>
-       <%= link_to "All categories", categories_path, class: "text-info" %>
+       <%= link_to "All categories", categories_path, class: "text-info" %><br/>
+          <% if current_user.admin? %>
+           <%= link_to "All users", users_path, class: "text-info" %>
+         <%  end%>
        <% end %>
        <br/><br/>
 <% if !user_signed_in? %>

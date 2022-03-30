@@ -17,7 +17,7 @@
 
 <p>
   <strong>Status:</strong>
- <%=  @book.status ? "Availabe" : "Not Available" %>
+<%=  @book.status==true && @book.quantity!=0 ? "Availabe" : "Not Available" %>
 </p>
  
  
@@ -27,3 +27,6 @@
  
 <%= link_to 'Back', books_path %>
 <br/>
+<p>
+<%= link_to ' Home', root_path %>
+</p>

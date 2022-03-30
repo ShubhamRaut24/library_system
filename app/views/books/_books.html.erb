@@ -4,6 +4,9 @@
       <th>Name &nbsp; &nbsp;</th>
       <th>Author &nbsp; &nbsp;</th>
       <th>  Category </th>
+      <%if user_signed_in?%>
+      <th> Quantity</th>
+      <% end %>
       <th > &nbsp; Status</th>
       <th>  &nbsp; &nbsp;Actions</th>
 
@@ -20,12 +23,17 @@
               <%= render book.categories %> 
             <% end %>
          </td>
-        <td> &nbsp;&nbsp; <%=  book.status ? "Availabe" : "Not Available" %> &nbsp;</td>
+         <td>
+         <%if user_signed_in?%>
+        <%= book.quantity %>
+      <% end %>
+      </td>
+        <td> &nbsp;&nbsp; <%=  book.status==true && book.quantity!=0 ? "Availabe" : "Not Available" %> &nbsp;</td>
         <td>
         <%= link_to 'Show |', book %> 
         <%= link_to 'Edit |', edit_book_path(book) %>
         <%= link_to 'Delete', book, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;
-        <% if book.status == true && user_signed_in?%>
+        <% if user_signed_in? && book.quantity!=0%>
         <%= link_to 'Add Book ', add_book_path(book)%>
         <%end%>
         </td>

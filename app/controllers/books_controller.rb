@@ -52,9 +52,19 @@ class BooksController < ApplicationController
     end
     def add_book
         @book = Book.find(params[:id])
+
+
         
-     if @book.status == true
-            @book.status = false
+     if @book.status == true && @book.quantity!=0
+        @books = current_user.books
+        flag = true
+        @books.each do |b|
+             if b.name == @book.name
+                flag = false
+             end
+        end
+         if flag == true
+            @book.quantity =  @book.quantity - 1
             current_user.books << @book
         if current_user.save
         flash[:notice] = "Book Successfully added to #{current_user.username}"
@@ -62,6 +72,11 @@ class BooksController < ApplicationController
             flash[:alert] = "Somthing Wrong Failed!!"
         end
     else
+        flash[:alert] = "Already Added"
+    end
+    else
+        @book.status= false
+        @book.save
         flash[:alert] = "Cant Add this Book Not Availabe!"  
     end
         redirect_to books_path
@@ -70,6 +85,7 @@ class BooksController < ApplicationController
       def remove_book
             @book = Book.find(params[:id])
             @book.status = true
+            @book.quantity =  @book.quantity + 1
             @book.save
             if current_user.books.delete(@book)
             flash[:alert] = "Book Successfully Removed"
@@ -86,7 +102,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-        params.require(:book).permit(:name, :author,category_ids: [])
+        params.require(:book).permit(:name, :author,:quantity,category_ids: [])
     end
 
 end
