@@ -1,13 +1,13 @@
+<h1> Rent Books To <%=current_user.username %> </h1>
+
+<br/><br/>
  <table>
   <thead>
     <tr>
       <th>Name &nbsp; &nbsp;</th>
       <th>Author &nbsp; &nbsp;</th>
-      <th>  Category </th>
-      <% if current_user.admin?%>
-      <th> Remaning Books &nbsp;</th>
-      <th>Total Books</th>
-      <%end%>
+      <th>Category</th>
+      <th> Remaning Book</th>
       <th > &nbsp; Status</th>
       <th>  &nbsp; &nbsp;Actions</th>
     </tr>
@@ -22,18 +22,19 @@
               <%= render book.categories %> 
              <% end %>
          </td>
-          <% if current_user.admin?%>
          <td><%= book.quantity %></td>
-         <td><%= book.total%></td>
-         <%end%>
         <td> &nbsp;&nbsp; <%=  book.status==true && book.quantity!=0 ? "Availabe" : "Not Available" %> &nbsp;</td>
         <td>
-        <%= link_to 'Show |', book %> 
-        <%= link_to 'Edit |', edit_book_path(book) %>
-        <%= link_to 'Delete', book, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;
+        <%if user_signed_in?%>
+        <%= link_to 'Rent Book', user_books_path(user_id:current_user.id,book_id:book.id),:method => :post %>
+        <%end%>
         </td>
       </tr>
-      
     <% end %>
   </tbody>
 </table>
+<br/>
+<p>
+<%= link_to 'Home', root_path %>
+</p>
+<br/>

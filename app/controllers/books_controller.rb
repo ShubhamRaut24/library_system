@@ -3,11 +3,8 @@ class BooksController < ApplicationController
 
     before_action :set_books, only: [:show, :edit, :update, :destroy]
 
-     
-
     def index
-        @books = Book.paginate(page: params[:page], per_page: 5) 
-        authorize @books
+        @books = policy_scope(Book.paginate(page: params[:page], per_page: 10)) 
     end
 
     def show
@@ -29,7 +26,7 @@ class BooksController < ApplicationController
         authorize @book
        if @book.save
         flash[:notice] = "Book Saved Successfully"
-        redirect_to (@book)
+        redirect_to books_path
        else
           render 'new'
        end
@@ -37,7 +34,7 @@ class BooksController < ApplicationController
 
     def update 
         authorize @book 
-       if @book.update(book_params)
+        if @book.update(book_params)
         flash[:notice] = "Book Updated Successfully"
         redirect_to books_path
         else 
@@ -50,51 +47,7 @@ class BooksController < ApplicationController
         @book.destroy
         redirect_to books_path
     end
-    def add_book
-        @book = Book.find(params[:id])
-
-
-        
-     if @book.status == true && @book.quantity!=0
-        @books = current_user.books
-        flag = true
-        @books.each do |b|
-             if b.name == @book.name
-                flag = false
-             end
-        end
-         if flag == true
-            @book.quantity =  @book.quantity - 1
-            current_user.books << @book
-        if current_user.save
-        flash[:notice] = "Book Successfully added to #{current_user.username}"
-        else
-            flash[:alert] = "Somthing Wrong Failed!!"
-        end
-    else
-        flash[:alert] = "Already Added"
-    end
-    else
-        @book.status= false
-        @book.save
-        flash[:alert] = "Cant Add this Book Not Availabe!"  
-    end
-        redirect_to books_path
-      end
-
-      def remove_book
-            @book = Book.find(params[:id])
-            @book.status = true
-            @book.quantity =  @book.quantity + 1
-            @book.save
-            if current_user.books.delete(@book)
-            flash[:alert] = "Book Successfully Removed"
-            else
-                flash[:alert] = "Somthing Wrong Failed!!"
-            end
-            redirect_to books_path
-      end
-
+     
     private 
 
     def set_books
@@ -102,7 +55,7 @@ class BooksController < ApplicationController
     end
 
     def book_params
-        params.require(:book).permit(:name, :author,:quantity,category_ids: [])
+        params.require(:book).permit(:name, :author,:total,:quantity,category_ids: [])
     end
 
 end

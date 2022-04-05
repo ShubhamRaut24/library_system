@@ -1,5 +1,6 @@
 class UserPolicy < ApplicationPolicy
    
+   
 
   def index?
     user != nil && user.admin
@@ -13,7 +14,11 @@ class UserPolicy < ApplicationPolicy
     user != nil && user.admin
   end
 
+  def show?
+    user!= nil && user.admin  
+  end
+
   def destroy?
-    user != nil &&  @user.admin
+    user!= nil &&  @user.admin
   end
 end

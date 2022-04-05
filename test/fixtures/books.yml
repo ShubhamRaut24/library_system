@@ -1,11 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: 
-  author: MyString
-  status: false
+  id: 1
+  name: Manohar Parrikar-Off the Record
+  author: Waman Subha Prabhu
+  status: true
+  total: 1
+  quantity: 1
 
 two:
-  name: 
-  author: MyString
+  id: 2
+  name: The Great Big Lion
+  author: Chryseis Knight
+  status: true
+  total: 1
+  quantity: 2
+
+three:
+  id: 3
+  name: For whom the Bell Tolls
+  author: Ernest Hemingway
   status: false
+  total: 1
+  quantity: 0

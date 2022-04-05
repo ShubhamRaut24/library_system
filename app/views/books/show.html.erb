@@ -1,10 +1,6 @@
-<h1>Show Page</h1>
-
-<h3>Books</h3>
-
- 
+<h1>Book Info Page</h1>
  <br/>
-
+<h4>Here You Can More Info About Book..........</h4>   
   <p>
   <strong>Name:</strong>
   <%= @book.name %>
@@ -16,9 +12,31 @@
 </p>
 
 <p>
+  <strong>Total No:</strong>
+  <%= @book.total %>
+</p>
+
+<p>
+  <strong>Remaning No:</strong>
+  <%= @book.quantity %>
+</p>
+
+<p>
   <strong>Status:</strong>
 <%=  @book.status==true && @book.quantity!=0 ? "Availabe" : "Not Available" %>
 </p>
+
+<% if current_user.admin?%>
+<p>
+  <strong> Book Rented By:</strong>
+<% @book.users.each do |u| %>
+   <%= u.username + " "%>
+<%end%>
+
+<%end%>
+</p>
+
+
  
  
 

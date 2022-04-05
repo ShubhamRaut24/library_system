@@ -45,6 +45,12 @@ class CategoriesController <ApplicationController
 
     def destroy
         authorize @category
+        @books = @category.books
+        @books.each do |book|
+          if book.categories.count == 1
+            book.destroy
+          end
+        end
         @category.destroy 
         flash[:alert] = "Your Category was successfully Deleted"
         redirect_to categories_path  

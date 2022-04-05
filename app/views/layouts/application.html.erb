@@ -14,7 +14,7 @@
     <%= yield %>
 
 <% if user_signed_in? %>
-<p>  <%= link_to current_user.username, user_path(current_user), class: "text-info"%>  <%="(Admin)" if current_user.admin? %></p>
+<p  class="text-info"> User:  <%= current_user.username %>  <%="(Admin)" if current_user.admin? %></p>
 <%= link_to "Log out", destroy_user_session_path, :method => :delete %>
 <% end %>
   </body>

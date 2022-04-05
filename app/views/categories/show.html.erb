@@ -1,9 +1,38 @@
-<h1> Category:<%= @category.name%> </h1>
- <br/>
+<h2>Books by <%= @category.name%> </h2><br/>
 
-<h3>Books</h3>
+ <table>
+  <thead>
+    <tr>
+      <th>Name &nbsp; &nbsp;</th>
+      <th>Author &nbsp; &nbsp;</th>
+      <th>  Category </th>
+      <th> Quantity</th>
+      <th > &nbsp; Status</th>
+      <th>  &nbsp; &nbsp;Actions</th>
+    </tr>
+  </thead>
 
- <%= render 'books/books' %>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.name %></td>
+        <td><%= book.author %></td> 
+        <td>  <% if book.categories.any? %>
+              <%= render book.categories %> 
+             <% end %>
+         </td>
+         <td><%= book.quantity %></td>
+        <td> &nbsp;&nbsp; <%=  book.status==true && book.quantity!=0 ? "Availabe" : "Not Available" %> &nbsp;</td>
+        <td>
+        
+        <%= link_to 'Add Book', user_books_path(user_id:current_user.id,book_id:book.id), :method => :post %>
+        
+        </td>
+      </tr>
+      
+    <% end %>
+  </tbody>
+</table>
  <br/>
 
  <p>

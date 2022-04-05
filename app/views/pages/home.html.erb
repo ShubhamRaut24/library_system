@@ -9,23 +9,27 @@
      
 </head>
 <body>
-
-     
-     
-       <h1>Welcome Library System</h1>
-      <h3> Home Page</h3>
+       <h1> <%= current_user.username%> Welcome To Library System</h1>
       <br/><br/>
       <% if user_signed_in? %>
-      <%= link_to 'All Books', books_path, class: "text-info" %><br/>
-       <%= link_to "All categories", categories_path, class: "text-info" %><br/>
+      <h3>Books Rented By <%= current_user.username%> </h3>
+      <% if current_user.books.count == 0%>
+      <p> You Don't Have Any Books Right Now.....Please Rent Some Books</p>
+      <%else%> 
+      <%= render 'users/users_books'%>
+      <%end%>
+      <br/>
+      <p>
+      </p>
+       <%= link_to "Rent New Books", new_user_book_path, class: "text-info" %><br/>
+       <%= link_to "See Books By Categories", categories_path, class: "text-info" %><br/>
+        <%= link_to 'See All Books', books_path, class: "text-info" %><br/>
           <% if current_user.admin? %>
-           <%= link_to "All users", users_path, class: "text-info" %>
+           <%= link_to "See All Users", users_path, class: "text-info" %><br/>
          <%  end%>
        <% end %>
        <br/><br/>
-<% if !user_signed_in? %>
-<%= link_to 'login', new_user_session_url %><br/>
-<% end %>
+ 
 
 
        

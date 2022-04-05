@@ -5,19 +5,21 @@
         <%= form_with(model: @book, local: true) do |f| %>
            
             <%= f.label :name  %><br/>
-            <%= f.text_field :name, placeholder: "name of book" %> <br/><br/>
+            <%= f.text_field :name, placeholder: "name of book" %> <br/>
            
 
-          
             <%= f.label :author%><br/>
-            <%= f.text_field :author, placeholder: "author name " %><br/><br/>
+            <%= f.text_field :author, placeholder: "author name " %><br/>
+
+            <%= f.label :total%><br/>
+            <%= f.number_field :total %><br/>
 
             <%= f.label :quantity%><br/>
-            <%= f.number_field :quantity %><br/><br/>
+            <%= f.number_field :quantity , placeholder: "Must Be Same As total " %><br/>
 
              <%= f.label :category%><br/>
              <%= f.collection_select(:category_ids, Category.all, :id, :name,
-             { prompt: "Make your selection from below list"}, { multiple: true, size: 4}) %><br/><br/>
+             { prompt: "Make your selection from below list"}, { multiple: true, size: 4}) %><br/>
              
             <%= f.submit  %><br/>
          

@@ -33,6 +33,7 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
 gem 'devise'
 gem "pundit"
+gem "rails-controller-testing"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

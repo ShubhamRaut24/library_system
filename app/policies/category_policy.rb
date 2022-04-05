@@ -12,15 +12,12 @@ class CategoryPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       else
-        scope.where(id: 1)
+        scope.where(id:1)
       end
     end
-
     private
-
     attr_reader :user, :scope
   end
- 
 
   def initialize(user, category)
     @user = user
@@ -28,11 +25,11 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def index?
-   true
+    @user!=nil 
   end
 
   def show?
-    user != nil
+    @user != nil
   end
 
   def new?
@@ -40,7 +37,7 @@ class CategoryPolicy < ApplicationPolicy
   end
 
   def create?
-    user != nil && user.admin
+    @user!= nil && user.admin
   end
 
   
@@ -49,10 +46,10 @@ def edit?
   end
 
   def update?
-    user != nil && user.admin
+    @user!= nil && user.admin
   end
 
   def destroy?
-    user != nil && user.admin
+    @user!= nil && user.admin
   end
 end

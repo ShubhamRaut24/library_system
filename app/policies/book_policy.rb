@@ -6,12 +6,31 @@ class BookPolicy < ApplicationPolicy
     @book = book
   end
 
+
+  class Scope
+    def initialize(user, scope)
+      @user  = user
+      @scope = scope
+    end
+
+    def resolve
+      if user.admin?
+        scope.all
+      else
+        scope.where(status: true)
+      end
+    end
+    private
+    attr_reader :user, :scope
+  end
+
+  
   def index?
-    true
+  true
   end
 
   def show?
-    user!=nil
+    @user!=nil
   end
 
   def edit?
@@ -19,7 +38,7 @@ class BookPolicy < ApplicationPolicy
   end
   
   def update?
-    user!=nil && @user.admin
+    @user!=nil && @user.admin
   end
 
   def new?
@@ -27,14 +46,11 @@ class BookPolicy < ApplicationPolicy
   end
   
   def create?
-    user!=nil &&  @user.admin
+    @user!=nil &&  @user.admin
   end
 
   def destroy?
-    user!=nil && @user.admin
+    @user!=nil && @user.admin
   end
-
-   
-
-
+  
 end
