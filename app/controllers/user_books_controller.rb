@@ -32,17 +32,17 @@ class UserBooksController < ApplicationController
              @book.save 
 
              @user_book.save
-             flash[:notice] = "Book Successfully added to #{current_user.username}"
+             flash[:notice] = "Book Successfully rented to #{current_user.username}"
              redirect_to root_path
             else
                 redirect_to new_user_book_path
-                flash[:alert] = "Already Added" 
+                flash[:alert] = "Already Rented By You!!" 
             end
         else
             @book.status = false
             @book.save
             redirect_to new_user_book_path
-            flash[:alert] = "Cant Add this Book Not Availabe!"  
+            flash[:alert] = "Can't Rent this Book Not Availabe!"  
         end
             
     end
@@ -56,7 +56,7 @@ class UserBooksController < ApplicationController
         @book.save
         if @user_book.destroy
             redirect_to root_path     
-        flash[:alert] = "Book Successfully Removed" 
+        flash[:alert] = "Book Successfully Returend" 
         else
             redirect_to root_path 
         flash[:alert] = "Somthing Wrong Failed!!"

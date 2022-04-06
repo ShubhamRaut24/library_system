@@ -44,7 +44,6 @@ class BookControllerTest < ActionDispatch::IntegrationTest
   test "should NOT save the book" do
     assert_difference('Book.count',0) do
       post books_url, params:{ book:{name:"T", author:"Mark Coll",total:nil,quantity:1}}
-
     end
     assert_template  "new"
   end

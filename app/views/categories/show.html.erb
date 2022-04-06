@@ -6,7 +6,7 @@
       <th>Name &nbsp; &nbsp;</th>
       <th>Author &nbsp; &nbsp;</th>
       <th>  Category </th>
-      <th> Quantity</th>
+      <th> Remaning Book</th>
       <th > &nbsp; Status</th>
       <th>  &nbsp; &nbsp;Actions</th>
     </tr>
@@ -25,7 +25,7 @@
         <td> &nbsp;&nbsp; <%=  book.status==true && book.quantity!=0 ? "Availabe" : "Not Available" %> &nbsp;</td>
         <td>
         
-        <%= link_to 'Add Book', user_books_path(user_id:current_user.id,book_id:book.id), :method => :post %>
+        <%= link_to 'Rent Book', user_books_path(user_id:current_user.id,book_id:book.id), :method => :post %>
         
         </td>
       </tr>

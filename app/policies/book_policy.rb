@@ -26,7 +26,7 @@ class BookPolicy < ApplicationPolicy
 
   
   def index?
-  true
+   true
   end
 
   def show?

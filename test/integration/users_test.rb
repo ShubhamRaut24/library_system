@@ -56,7 +56,7 @@ class BookTestAsUserTest < ActionDispatch::IntegrationTest
     delete user_book_path(user_book.id)
     assert_response :redirect
     follow_redirect!
-    assert_match "Book Successfully Removed", response.body
+    assert_match "Book Successfully Returend", response.body
     end
     end
 
